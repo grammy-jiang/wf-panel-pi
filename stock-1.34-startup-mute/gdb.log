@@ -1,0 +1,36 @@
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/aarch64-linux-gnu/libthread_db.so.1".
+[New Thread 0x7ffff483ede0 (LWP 2229861)]
+[New Thread 0x7ffff402ede0 (LWP 2229862)]
+[New Thread 0x7ffff381ede0 (LWP 2229863)]
+[New Thread 0x7ffff2fbede0 (LWP 2229864)]
+[Detaching after vfork from child process 2229865]
+[Detaching after vfork from child process 2229866]
+[Detaching after vfork from child process 2229867]
+[Detaching after vfork from child process 2229868]
+[New Thread 0x7ffff2606de0 (LWP 2229869)]
+[Detaching after fork from child process 2229870]
+[New Thread 0x7ffff1df6de0 (LWP 2229873)]
+[Thread 0x7ffff2606de0 (LWP 2229869) exited]
+[New Thread 0x7ffff15e6de0 (LWP 2229881)]
+[Thread 0x7ffff15e6de0 (LWP 2229881) exited]
+[New Thread 0x7fffdbffede0 (LWP 2229886)]
+[New Thread 0x7fffdb7eede0 (LWP 2230005)]
+
+(wf-panel-pi:2229856): Gtk-CRITICAL **: 09:30:11.539: gtk_window_get_size: assertion 'GTK_IS_WINDOW (window)' failed
+
+(wf-panel-pi:2229856): Gtk-CRITICAL **: 09:30:11.539: gtk_bin_get_child: assertion 'GTK_IS_BIN (bin)' failed
+
+(wf-panel-pi:2229856): Gtk-CRITICAL **: 09:30:11.539: gtk_container_foreach: assertion 'GTK_IS_CONTAINER (container)' failed
+
+Thread 1 "wf-panel-pi" received signal SIGSEGV, Segmentation fault.
+0x000055555556f6a8 in ?? ()
+#0  0x000055555556f6a8 in ?? ()
+#1  0x00007ffff6be210c in ?? () from /lib/aarch64-linux-gnu/libgio-2.0.so.0
+#2  0x00007ffff664e454 in ?? () from /lib/aarch64-linux-gnu/libglib-2.0.so.0
+#3  0x00007ffff665091c in ?? () from /lib/aarch64-linux-gnu/libglib-2.0.so.0
+#4  0x00007ffff66511c4 in g_main_context_iteration () from /lib/aarch64-linux-gnu/libglib-2.0.so.0
+#5  0x00007ffff6baf7ac in g_application_run () from /lib/aarch64-linux-gnu/libgio-2.0.so.0
+#6  0x0000555555563708 in main ()
+Signal        Stop	Print	Pass to program	Description
+SIGSEGV       Yes	Yes	Yes		Segmentation fault

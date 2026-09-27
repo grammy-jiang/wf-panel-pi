@@ -1,0 +1,22 @@
+$ a=$(notify-send --print-id -t 0 "First" "shown immediately")
+a=2
+$ b=$(notify-send --print-id -t 0 "Second" "queued for 500 ms")
+b=3
+[screenshot 1-before-replace.png: both still muted, nothing shown yet] panel: alive (owns org.freedesktop.Notifications)
+$ notify-send --print-id --replace-id=3 -t 0 "Second" "updated while queued"
+GDBus.Error:org.freedesktop.DBus.Error.NoReply: Message recipient disconnected from message bus without replying
+3
+[screenshot 2-after-replace.png] panel: GONE (org.freedesktop.Notifications has no owner)
+--- panel stderr / gdb ---
+(wf-panel-pi:2229856): Gtk-CRITICAL **: 09:30:11.539: gtk_window_get_size: assertion 'GTK_IS_WINDOW (window)' failed
+(wf-panel-pi:2229856): Gtk-CRITICAL **: 09:30:11.539: gtk_bin_get_child: assertion 'GTK_IS_BIN (bin)' failed
+(wf-panel-pi:2229856): Gtk-CRITICAL **: 09:30:11.539: gtk_container_foreach: assertion 'GTK_IS_CONTAINER (container)' failed
+Thread 1 "wf-panel-pi" received signal SIGSEGV, Segmentation fault.
+#0  0x000055555556f6a8 in ?? ()
+#1  0x00007ffff6be210c in ?? () from /lib/aarch64-linux-gnu/libgio-2.0.so.0
+#2  0x00007ffff664e454 in ?? () from /lib/aarch64-linux-gnu/libglib-2.0.so.0
+#3  0x00007ffff665091c in ?? () from /lib/aarch64-linux-gnu/libglib-2.0.so.0
+#4  0x00007ffff66511c4 in g_main_context_iteration () from /lib/aarch64-linux-gnu/libglib-2.0.so.0
+#5  0x00007ffff6baf7ac in g_application_run () from /lib/aarch64-linux-gnu/libgio-2.0.so.0
+#6  0x0000555555563708 in main ()
+SIGSEGV       Yes	Yes	Yes		Segmentation fault

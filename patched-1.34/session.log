@@ -1,0 +1,9 @@
+$ a=$(notify-send --print-id -t 0 "First" "shown immediately")
+a=2
+$ b=$(notify-send --print-id -t 0 "Second" "queued for 500 ms")
+b=3
+[screenshot 1-before-replace.png: First shown, Second still queued] panel: alive (owns org.freedesktop.Notifications)
+$ notify-send --print-id --replace-id=3 -t 0 "Second" "updated while queued"
+3
+[screenshot 2-after-replace.png] panel: alive (owns org.freedesktop.Notifications)
+--- panel stderr / gdb ---

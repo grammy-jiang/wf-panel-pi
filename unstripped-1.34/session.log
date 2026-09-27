@@ -1,0 +1,25 @@
+$ a=$(notify-send --print-id -t 0 "First" "shown immediately")
+a=2
+$ b=$(notify-send --print-id -t 0 "Second" "queued for 500 ms")
+b=3
+[screenshot 1-before-replace.png: First shown, Second still queued] panel: alive (owns org.freedesktop.Notifications)
+$ notify-send --print-id --replace-id=3 -t 0 "Second" "updated while queued"
+GDBus.Error:org.freedesktop.DBus.Error.NoReply: Message recipient disconnected from message bus without replying
+3
+[screenshot 2-after-replace.png] panel: GONE (org.freedesktop.Notifications has no owner)
+--- panel stderr / gdb ---
+(wf-panel-pi-unstripped:2226456): Gtk-CRITICAL **: 09:28:50.497: gtk_window_get_size: assertion 'GTK_IS_WINDOW (window)' failed
+(wf-panel-pi-unstripped:2226456): Gtk-CRITICAL **: 09:28:50.497: gtk_bin_get_child: assertion 'GTK_IS_BIN (bin)' failed
+(wf-panel-pi-unstripped:2226456): Gtk-CRITICAL **: 09:28:50.497: gtk_container_foreach: assertion 'GTK_IS_CONTAINER (container)' failed
+Thread 1 "wf-panel-pi-uns" received signal SIGSEGV, Segmentation fault.
+#0  0x000055555559a9f8 in replace_message (id=3, message=0x7fffdc002470 "Second\nupdated while queued") at ../src/panel/notification.c:604
+#1  0x0000555555599514 in handle_method_call (connection=0x555555648af0, sender=0x7fffdc002740 ":1.8", method_name=0x7fffdc002d60 "Notify", parameters=0x7fffdc003bd0, invocation=0x7fffdc0044b0) at ../src/panel/notification.c:251
+#2  0x00007ffff6be210c in ?? () from /lib/aarch64-linux-gnu/libgio-2.0.so.0
+#3  0x00007ffff664e454 in ?? () from /lib/aarch64-linux-gnu/libglib-2.0.so.0
+#4  0x00007ffff665091c in ?? () from /lib/aarch64-linux-gnu/libglib-2.0.so.0
+#5  0x00007ffff66511c4 in g_main_context_iteration () from /lib/aarch64-linux-gnu/libglib-2.0.so.0
+#6  0x00007ffff6baf7ac in g_application_run () from /lib/aarch64-linux-gnu/libgio-2.0.so.0
+#7  0x000055555558c150 in PanelApp::run (this=0x5555555e56f0) at ../src/panel/panel-app.cpp:77
+#8  0x000055555558c0a8 in PanelApp::create (argc=1, argv=0x7fffffffe378) at ../src/panel/panel-app.cpp:72
+#9  0x000055555558d254 in main (argc=1, argv=0x7fffffffe378) at ../src/panel/panel-app.cpp:230
+SIGSEGV       Yes	Yes	Yes		Segmentation fault

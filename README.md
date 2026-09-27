@@ -4,6 +4,7 @@ Captured on Raspberry Pi OS trixie (Raspberry Pi 5, labwc 0.20.1) on an isolated
 
 - `session.log`: the exact `notify-send` commands, their output and the panel's bus state after each step
 - `1-before-replace.png`, `2-after-replace.png`: screenshots of the test output before and after the replace
+- `before-after.png`: the top-right corner of both screenshots side by side with captions (not in `unstripped-1.34`)
 - `panel-stderr-and-backtrace.log`: GTK criticals from the panel's stderr and the gdb backtrace (if it crashed)
 - `gdb.log`: raw gdb session output
 - `environment.txt`: binary provenance and package versions

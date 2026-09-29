@@ -1,0 +1,10 @@
+Hardware: Raspberry Pi 5 Model B Rev 1.1
+OS: Raspberry Pi OS, Debian 13 (trixie)
+Kernel: 6.18.50+rpt-rpi-2712 (aarch64)
+labwc: 0.20.1-1+rpt1, headless backend, pixman renderer
+GTK 3: 3.24.49-3+rpt8
+Theme and font: Raspberry Pi desktop GSettings defaults (PiXtrix, Nunito Sans Light 12)
+Before: wf-panel-pi 1.38, archive package wf-panel-pi_1.38_arm64.deb
+        SHA-256 6148713d623bd00a6e3731c01048a18a644837726213feabc2129c6889edbc21
+After:  local build of the wf-panel-pi 1.38 source package with the two-line change
+        in show_message(), src/panel/notification.c
